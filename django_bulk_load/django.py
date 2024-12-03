@@ -93,6 +93,7 @@ def get_model_fields(
             getattr(field, "column", None)
             and (include_auto_fields or not isinstance(field, models.AutoField))
             and not isinstance(field, models.ManyToManyField)
+            and not (field.__class__.__name__ == 'TaggableManager')
         ):
             fields.append(field)
 
