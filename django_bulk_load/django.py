@@ -113,6 +113,9 @@ def get_fields_and_names(
     else:
         fields = get_fields_from_names(field_names, model_meta)
 
+    fields = [
+        x for x in fields if x.__class__.__name__ != 'TaggableManager'
+    ]
     return fields, [field.name for field in fields]
 
 

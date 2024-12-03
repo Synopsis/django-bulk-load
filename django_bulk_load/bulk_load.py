@@ -53,9 +53,7 @@ def create_temp_table_and_load(
     temp_table_query = create_temp_table(
         temp_table_name=table_name,
         source_table_name=source_table_name,
-        column_names=[
-            x.column for x in fields if x.__class__.__name__ != 'TaggableManager'
-        ],
+        column_names=[x.column for x in fields],
     )
     tsv_buffer = models_to_tsv_buffer(models, fields, connection=connection)
     cursor.execute(temp_table_query)
