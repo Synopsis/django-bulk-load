@@ -56,6 +56,15 @@ def create_temp_table_and_load(
         column_names=[x.column for x in fields],
     )
     tsv_buffer = models_to_tsv_buffer(models, fields, connection=connection)
+    print(f"""
+temp_table_query:
+
+TYPE:
+{type(temp_table_query)}
+
+QUERY:
+{temp_table_query}
+""")
     cursor.execute(temp_table_query)
     cursor.copy_expert(
         copy_query(table_name),
